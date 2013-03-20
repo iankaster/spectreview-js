@@ -1,6 +1,9 @@
 (function ( SpectreView, $, undefined ) {
 
 	SpectreView.Spectrum = function () {
+		var defaults = {
+			
+		};
 	
 		/*
 			old options
@@ -21,10 +24,25 @@
 		*/
 	
 		this.load = function ( url ) {
+			$.ajax({
+				url: url,
+				dataType: 'text',
+				success: onLoadSuccess,
+				error: onLoadError
+			});
+		}
+		
+		function onLoadSuccess (data, status, jqXHR) {
 		
 		}
 		
+		function onLoadError (jqXHR, status, error) {
 		
+		}
 	}
 
-}( window.SpectreView = window.SpectreView || {}, jQuery));
+	$.fn.spectreView = function () {
+	
+	};
+	
+}( window.SpectreView = window.SpectreView || {}, jQuery ));
