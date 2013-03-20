@@ -353,4 +353,4 @@
 		}
 	}
 
-}( window.SpectreView = window.SpectreView || {} );
+}( window.SpectreView = window.SpectreView || {} ));
