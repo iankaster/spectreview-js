@@ -3,13 +3,13 @@
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	
-	<script src="src/spectreview.jdxreader.js"></script>
-	<script src="src/spectreview.spectrum.js"></script>
+	<script src="../js/spectreview.jdxreader.js"></script>
+	<script src="../js/spectreview.spectrum.js"></script>
 	
 	<script>
 		function load(file) {
 			var data = $('#' + file).val()
-			var jdxReader = new SpectreView.JdxReader();
+			var jdxReader = new SpectreView.Jdx.Reader();
 			jdxReader.load(data);
 			
 			writePoints('points', jdxReader.getPoints());
