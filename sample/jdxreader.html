@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="http://www.jqchart.com/jquery/chart/Content/themes/le-frog/jquery-ui-1.8.20.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jqchart.com/jquery/chart/Content/jquery.jqChart.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jqchart.com/jquery/chart/Content/jquery.jqRangeSlider.css">
+
+	<style>
+		textarea{
+			display: none;
+		}
+	</style>
+
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	
+	<script src="http://www.jqchart.com/jquery/chart/Scripts/jquery.jqRangeSlider.min.js" type="text/javascript"></script>
+	<script src="http://www.jqchart.com/jquery/chart/Scripts/jquery.jqChart.min.js" type="text/javascript"></script>
 	<script src="../js/spectreview.jdxreader.js"></script>
 	<script src="../js/spectreview.spectrum.js"></script>
 	
@@ -20,6 +32,8 @@
 			writePoints('ppm-points', jdxReader.getPointsInPpm());
 			
 			$('#type').val(jdxReader.getType());
+
+			$("#graph").spectreView(jdxReader.getPoints());
 		}
 		
 		function writePoints (id, points) {
@@ -36,6 +50,8 @@
 	</script>
 </head>
 <body>
+
+<div id="graph"></div>
 
 <p>
 <h2>Data File 1 (IR) <button onclick="load('jdx-file-1')">Load</button></h2>
