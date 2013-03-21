@@ -353,4 +353,12 @@
 		}
 	}
 
+	SpectreView.Jdx.Converter = function (points, type, xUnits, yUnits) {
+		var pointsInTransmittance, 
+			pointsInAbsorbance, 
+			integrationPoints,
+			pointsInHz,
+			pointsInPpm;
+	}
+	
 }( window.SpectreView = window.SpectreView || {} ));
