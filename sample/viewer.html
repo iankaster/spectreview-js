@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		@import 'http://code.jquery.com/ui/1.10.2/themes/le-frog/jquery-ui.css';
+		
+		#toolbar {
+			padding: 5px;
+			display: inline-block;
+		}
+	</style>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	
+	<script src="../js/spectreview.jdxreader.js"></script>
+	<script src="../js/spectreview.spectrum.js"></script>
+	
+	<script>
+		$(function() {
+			$('#integration').button().click(onIntegrationClick);
+			$('#ir-y-units').buttonset().click(onIrYUnitsClick);
+			$('#nmr-x-units').buttonset().click(onNmrXUnitsClick);
+			
+			function onIntegrationClick () {
+				alert('integration clicked');
+			}
+			
+			function onIrYUnitsClick () {
+				alert('ir y units clicked');
+			}
+			
+			function onNmrXUnitsClick () {
+				alert('nmr x units clicked');
+			}
+		});
+		
+		
+	</script>
+</head>
+<body>
+	<div id="toolbar" class="ui-widget-header ui-corner-all">
+		<input type="checkbox" id="integration" /><label for="integration">Integration</label>
+		
+		<span id="ir-y-units">
+			<input type="radio" id="ir-y-units-transmittance" name="ir-y-units" checked="checked" /><label for="ir-y-units-transmittance">Transmittance</label>
+			<input type="radio" id="ir-y-units-absorbance" name="ir-y-units" /><label for="ir-y-units-absorbance">Absorbance</label>
+		</span>
+		
+		<span id="nmr-x-units">
+			<input type="radio" id="nmr-y-units-ppm" name="nmr-x-units" checked="checked" /><label for="nmr-y-units-ppm">PPM</label>
+			<input type="radio" id="nmr-y-units-hz" name="nmr-x-units" /><label for="nmr-y-units-hz">Hz</label>
+		</span>
+	</div>
+</body>
+</html>
