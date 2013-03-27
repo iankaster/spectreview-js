@@ -1,8 +1,12 @@
 (function ( SpectreView, $, undefined ) {
 
-	SpectreView.Spectrum = function () {
+	SpectreView.Spectrum = {
 
-		this.defaultOptions = {
+		reader: new SpectreView.Jdx.Reader(),
+
+		graphId: "graph",
+
+		defaultOptions: {
       title: '',
       legend: { visible: false },
       border: { strokeStyle: '#6ba851' },
@@ -34,7 +38,7 @@
 			}
             ],
       series: []
-	  };
+	  },
 
 		/*
 			old options
@@ -54,7 +58,7 @@
 			export file format
 		*/
 
-		this.load = function ( url ) {
+		load: function (url) {
 			$.ajax({
 				url: url,
 				dataType: 'text',
@@ -63,28 +67,34 @@
 			});
 		}
 
-		function onLoadSuccess (data, status, jqXHR) {
-
-		}
-
-		function onLoadError (jqXHR, status, error) {
-
-		}
 	};
 
-	$.fn.spectreView = function (reader) {
-		var spectrum = new SpectreView.Spectrum();
+	$.fn.spectreView = function(path){
+		SpectreView.Spectrum.load(path);
+	};
 
-		console.log(reader.getType());
+	$(document).on("click", "button", function(e){
+		var path = $(this).data("file") + ".txt";
+		$("#graph").spectreView(path);
+	});
 
-		spectrum.defaultOptions.series.push({
+	function onLoadSuccess (data, status, jqXHR) {
+
+		SpectreView.Spectrum.reader.load(data);
+
+		SpectreView.Spectrum.defaultOptions.series = [];
+
+		SpectreView.Spectrum.defaultOptions.series.push({
 			type: "line",
-			data: reader.getPoints(),
+			data: SpectreView.Spectrum.reader.getPoints(),
 			markers: null
 		});
 
-		$(this).jqChart(spectrum.defaultOptions);
+		$('#' + SpectreView.Spectrum.graphId).jqChart(SpectreView.Spectrum.defaultOptions);
+	}
 
-	};
+	function onLoadError (jqXHR, status, error) {
+		console.log("error loading file");
+	}
 
 }( window.SpectreView = window.SpectreView || {}, jQuery));
