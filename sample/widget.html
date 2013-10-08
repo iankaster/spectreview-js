@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+
+		$.widget('spectreview.spectrum', {
+			// Default options.
+		    options: {
+		        value: 0,
+		        integration : false
+		    },
+
+			_create: function() {
+				var progress = this.options.value + "%";
+		        this.element
+		            .addClass( "spectrum" )
+		            .text( progress );
+			},
+
+			toggleIntegration : function () {
+				this.options.integration = !this.options.integration;
+				this._refresh();
+			}
+
+			_refresh : function () {
+
+			}
+		});
+
+		$(function () {
+			var s = $('#spectrum').spectrum({value:37});
+
+			// on a button click
+			s.spectrum('options', 'integration', true);
+		});
+		
+	</script>
+</head>
+
+<body>
+	<div id="spectrum"></div>
+</body>
+</html>
