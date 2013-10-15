@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+
+		$.widget('spectreview.spectrum', {
+			// Default options.
+		    options: {
+		        integration : false,
+		        absorbance: false, 
+		        transmittance: false,
+		        hertz: false,
+		        pointsPerMillion: false
+		    },
+
+			_create: function() {
+		        console.log(this.options);
+			},
+
+			_refresh : function () {
+				console.log(this.options);
+			}
+		});
+
+		$(function () {
+			var s = $('#spectrum').spectrum();
+
+			$("input[name='IAT']").on("change", function(){
+				s.spectrum('option', 'integration', $("#I").is(":checked"));
+				s.spectrum('option', 'absorbance', $("#A").is(":checked"));
+				s.spectrum('option', 'transmittance', $("#T").is(":checked"));
+				console.log(s.spectrum('option'));
+			});
+			
+		});
+		
+	</script>
+</head>
+
+<body>
+	<div id="spectrum"></div>
+
+	<label for"I">Integration</label>
+	<input id="I" name="IAT" type="radio"></input> 
+
+	<label for"A">Absorbance</label>
+	<input id="A" name="IAT" type="radio"></input> 
+
+	<label for"T">Transmittance</label>
+	<input id="T" name="IAT" type="radio"></input> 
+
+	<hr/>
+
+	<label for"P">Points Per Million</label>
+	<input id="P" name="PH" type="radio"></input> 
+
+	<label for"H">Hertz</label>
+	<input id="H" name="PH" type="radio"></input> 
+
+</body>
+</html>
